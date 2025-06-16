@@ -22,7 +22,7 @@ A dynamic reverse proxy server with auto-reloading configuration, built with Nod
 
 1. Clone the repository:
    ```bash
-   git clone [repository-url]
+   git clone [https://github.com/karthikpro/node-router](https://github.com/karthikpro/node-router.git)
    cd node-router
    ```
 
