@@ -1,0 +1,17 @@
+{
+  "urlContext": "/abc",
+  "backend": "10.10.10.10:1234",
+  "removePrefix": "/abc",
+  "addPrefix": "cde",
+  "log": true,
+  "timeout": 5000,
+  "ignoreTimeout": ["/abc/health", "/abc/status"],
+  "cors": {
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST"
+  },
+  "security": {
+    "frameguard": true,
+    "xssFilter": true
+  }
+}

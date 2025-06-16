@@ -1,0 +1,25 @@
+{
+  "name": "node-router",
+  "version": "1.0.0",
+  "description": "A dynamic reverse proxy server with auto-reloading configuration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "16.20.2"
+  },
+  "keywords": [
+    "reverse-proxy",
+    "dynamic-configuration",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "helmet": "^8.1.0"
+  }
+}

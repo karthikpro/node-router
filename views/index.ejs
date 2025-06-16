@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Router</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .routes-list {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .route-item {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .route-item:last-child {
+            border-bottom: none;
+        }
+        .route-context {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .route-backend {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Active Routes</h1>
+        <div class="routes-list">
+            <% if (routes.size > 0) { %>
+                <% for (const [urlContext, config] of routes) { %>
+                    <div class="route-item">
+                        <div class="route-context">
+                            <a href="<%= urlContext %>">
+                                <%= urlContext %></div>
+                            </a>
+                        <!-- <div class="route-backend">→ <%= config.backend %></div> -->
+                    </div>
+                <% } %>
+            <% } else { %>
+                <p>No active routes configured.</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

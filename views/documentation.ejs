@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Router - Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-top: 2rem;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 1rem;
+        }
+        code {
+            background: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .property {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .property:last-child {
+            border-bottom: none;
+        }
+        .property-name {
+            color: #2980b9;
+            font-weight: bold;
+        }
+        .type {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        .example {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Node Router Documentation</h1>
+        
+        <h2>Route Configuration</h2>
+        <p>Route configurations are defined in JSON files placed in the <code>routes</code> directory. Each file represents a single routing rule with various options for customization.</p>
+
+        <h3>Configuration Properties</h3>
+        
+        <div class="property">
+            <div class="property-name">urlContext</div>
+            <div class="type">Type: string</div>
+            <p>The base URL path that this route will handle. All requests starting with this path will be routed to the specified backend.</p>
+            <div class="example">
+                <code>"urlContext": "/api"</code>
+            </div>
+        </div>
+
+        <div class="property">
+            <div class="property-name">backend</div>
+            <div class="type">Type: string</div>
+            <p>The target backend server address including hostname/IP and port.</p>
+            <div class="example">
+                <code>"backend": "backend-server:8080"</code>
+            </div>
+        </div>
+
+        <div class="property">
+            <div class="property-name">removePrefix</div>
+            <div class="type">Type: string | optional</div>
+            <p>A prefix to remove from the request path before forwarding to the backend. Useful when your backend doesn't expect certain path segments.</p>
+            <div class="example">
+                <code>"removePrefix": "/api"</code>
+            </div>
+        </div>
+
+        <div class="property">
+            <div class="property-name">addPrefix</div>
+            <div class="type">Type: string | optional</div>
+            <p>A prefix to add to the request path before forwarding to the backend. Useful when your backend expects additional path segments.</p>
+            <div class="example">
+                <code>"addPrefix": "/v1"</code>
+            </div>
+        </div>
+
+        <div class="property">
+            <div class="property-name">log</div>
+            <div class="type">Type: boolean | optional</div>
+            <p>Enable or disable request logging for this route. When enabled, logs will show the original request and its forwarded destination.</p>
+            <div class="example">
+                <code>"log": true</code>
+            </div>
+        </div>
+
+        <div class="property">
+            <div class="property-name">timeout</div>
+            <div class="type">Type: number | optional</div>
+            <p>The timeout in milliseconds for requests to the backend. If the backend doesn't respond within this time, the request will be terminated.</p>
+            <div class="example">
+                <code>"timeout": 5000</code>
+            </div>
+        </div>
+
+        <div class="property">
+            <div class="property-name">ignoreTimeout</div>
+            <div class="type">Type: array of strings | optional</div>
+            <p>An array of URL patterns where the timeout should not be applied. Useful for long-running operations.</p>
+            <div class="example">
+                <code>"ignoreTimeout": ["/api/health", "/api/status"]</code>
+            </div>
+        </div>
+
+        <div class="property">
+            <div class="property-name">cors</div>
+            <div class="type">Type: object | optional</div>
+            <p>CORS configuration for the route. Supports all standard CORS options.</p>
+            <div class="example">
+<pre>"cors": {
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST"
+}</pre>
+            </div>
+        </div>
+
+        <div class="property">
+            <div class="property-name">security</div>
+            <div class="type">Type: object | optional</div>
+            <p>Security headers configuration using Helmet. Supports all Helmet options.</p>
+            <div class="example">
+<pre>"security": {
+    "frameguard": true,
+    "xssFilter": true
+}</pre>
+            </div>
+        </div>
+
+        <h3>Complete Example</h3>
+<pre>{
+    "urlContext": "/api",
+    "backend": "backend-server:8080",
+    "removePrefix": "/api",
+    "addPrefix": "/v1",
+    "log": true,
+    "timeout": 5000,
+    "ignoreTimeout": ["/api/health", "/api/status"],
+    "cors": {
+        "origin": "*",
+        "methods": "GET,HEAD,PUT,PATCH,POST"
+    },
+    "security": {
+        "frameguard": true,
+        "xssFilter": true
+    }
+}</pre>
+
+        <h2>Auto-Reloading</h2>
+        <p>The Node Router watches the <code>routes</code> directory for changes. When you add, modify, or delete route configuration files, the changes are automatically applied without requiring a server restart.</p>
+
+        <h2>Health Monitoring</h2>
+        <p>The server provides a health endpoint at <code>/health</code> that returns the current status of the router and its configured routes.</p>
+    </div>
+</body>
+</html>
